@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+PANIER
+
+ <table class="table">
+        <thead>
+            <tr>
+                <th>Forfait</th>
+                <th>prix</th>
+                <th>quantité</th>
+                <th>Total</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for forfait_selectionne in dataPanier %}
+                    <tr>
+                        <td>{{ forfait_selectionne.forfait.name }}</td>
+                        <td>{{ forfait_selectionne.forfait.price }} €</td>
+                        <td>{{ forfait_selectionne.quantite }}</td>
+                         <td>{{ forfait_selectionne.quantite * forfait_selectionne.forfait.price }} €</td>   <!--cette ligne correspond au total -->
+                        <td>
+                             <a href="{{ path('app_cart_add', {id: forfait_selectionne.forfait.id}) }}"class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i></a>  <!--bouton ajouter 1 exemplaire au panier -->
+                             <a href="{{ path('app_cart_remove', {id: forfait_selectionne.forfait.id}) }}"class="btn btn-primary">suppression 1 exemplaire</a>  <!--bouton ajouter au panier -->
+                              <a href="{{ path('app_cart_delete', {id: forfait_selectionne.forfait.id}) }}"class="btn btn-primary">supprimer la totalité du produit</a>           <!--bouton ajouter au panier -->
+                        </td>
+                    </tr>
+
+            {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center">Votre panier est vide</td>
+                    </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total</td>
+                <td>{{ total }} €</td>
+                <td><a href="{{ path('app_cart_delete_all') }}"class="btn btn-primary">supprimer le panier</a></td>
+            </tr>
+        </tfoot>
+    </table>
+    {# {{ dump() }} #}
+{% endblock %}

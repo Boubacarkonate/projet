@@ -1,0 +1,6 @@
+index:
+    path: /
+    controller: App\Controller\HomeController::index
+
+
+# redirection automatique sur mon home

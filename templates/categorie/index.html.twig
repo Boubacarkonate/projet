@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie index{% endblock %}
+
+{% block body %}
+    <h1>Categorie index</h1> 
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for categorie in categories %}
+    <div class="col">
+        <div class="card text-center mb-3" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ categorie.sector }}</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="{{ path('app_detail_categorie', {'id': categorie.id}) }}" class="btn btn-primary">Voir Cv</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+    {# <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Sector</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+       
+            <tr>
+                <td>{{ categorie.id }}</td>
+                <td>{{ categorie.sector }}</td>
+                <td>
+                    <a href="{{ path('app_detail_categorie', {'id': categorie.id}) }}">les cv de la categorie</a> <br>
+                    <a href="{{ path('app_admin_categorie_edit', {'id': categorie.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_categorie_new') }}">Create new</a> #}
+{% endblock %}
