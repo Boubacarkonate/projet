@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/recruteur/cvtheque')]
+#[Route('/recruteur/actif/cvtheque')]
 class RecruteurCvthController extends AbstractController
 {
     #[Route('/', name: 'app_recruteur_cvth_index', methods: ['GET'])]
