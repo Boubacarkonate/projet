@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class EspaceController extends AbstractController
 {
-    #[Route('recruteur/espace', name: 'app_espace_recruteur')]
+    #[Route('profile/recruteur/espace', name: 'app_espace_recruteur')]
     public function recruteur(): Response
     {
         return $this->render('espace/recruteur.html.twig', [

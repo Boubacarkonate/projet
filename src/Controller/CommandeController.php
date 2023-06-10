@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class CommandesController extends AbstractController
+class CommandeController extends AbstractController
 {
     #[Route('commandes', name: 'app_commandes_success')]
     public function sucess(FactureRepository $factureRepository, RequestStack $session, ForfaitRepository $forfaitRepository, CommandesRepository $commandesRepository, CartService $cartService):Response
@@ -65,16 +65,16 @@ class CommandesController extends AbstractController
             $commandes=new Commandes();
           
             $commandes ->setCreatedAt(new \DateTimeImmutable());
-            $commandes -> setExpireAt(new \DateTimeImmutable('+5 minute')) ; 
-            // if ($key == 1) {
-            //   dd($commandes -> setExpireAt(new \DateTimeImmutable('+1 day')))  ; 
-            // }
-            // elseif ($key == 2) {
-            //     $commandes -> setExpireAt(new \DateTimeImmutable('+6 month'));
-            // }
-            // elseif ($key == 3) {
-            //     $commandes -> setExpireAt(new \DateTimeImmutable('+12 month'));
-            // }
+            // $commandes -> setExpireAt(new \DateTimeImmutable('+5 minute')) ; 
+            if ($key == 1) {
+              $commandes -> setExpireAt(new \DateTimeImmutable('+3 minute'))  ; 
+            }
+            elseif ($key == 2) {
+                $commandes -> setExpireAt(new \DateTimeImmutable('+6 month'));
+            }
+            elseif ($key == 3) {
+                $commandes -> setExpireAt(new \DateTimeImmutable('+12 month'));
+            }
             
           
             $commandes->setQuantity($value);
@@ -85,7 +85,7 @@ class CommandesController extends AbstractController
             // affectation de la propriété facture issue du 
             // de la facture créé au dessus
             $commandes->setFactureId($facture);
-           
+           $commandes->setUsers($this->getUser());
             $commandesRepository->save($commandes,true);
         }
 
@@ -205,3 +205,4 @@ class CommandesController extends AbstractController
         ]);
     }
 }
+
