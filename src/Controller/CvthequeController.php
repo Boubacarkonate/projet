@@ -27,9 +27,9 @@ class CvthequeController extends AbstractController
 
         $finAbonnement = new \DateTimeImmutable(); // Création d'une variable $finAbonnement contenant la date actuelle
 
-        $commande = $commandesRepository->findOneBy(['users' => $user]);
+        $commandes = $commandesRepository->findOneBy(['users' => $user]);               //je récupère la commande associé(clé étrangère "users" dans la table commandes) à la clé primaire $user 
 
-        if ($commande && $commande->getExpireAt() > $finAbonnement) {
+        if (isset($commandes) && $commandes->getExpireAt() > $finAbonnement) {           // if (isset($commandes) && $commandes->getExpireAt() > $finAbonnement)
             return $this->render('cvtheque/index.html.twig', [
                 'cvs' => $cvRepository->findAll(),
                 'user' => $user
