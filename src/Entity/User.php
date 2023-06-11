@@ -65,8 +65,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: Commandes::class)]
     private Collection $commandes;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $role = null;
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $expireAt = null;
 
     public function __construct()
     {
@@ -350,14 +350,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getExpireAt(): ?\DateTimeImmutable
     {
-        return $this->role;
+        return $this->expireAt;
     }
 
-    public function setRole(?string $role): self
+    public function setExpireAt(?\DateTimeImmutable $expireAt): self
     {
-        $this->role = $role;
+        $this->expireAt = $expireAt;
 
         return $this;
     }
