@@ -42,17 +42,17 @@ class CvRepository extends ServiceEntityRepository
 //    /**
 //     * @return Cv[] Returns an array of Cv objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   public function trouverCv($recherche): array
+   {
+       return $this->createQueryBuilder('c')
+           ->andWhere('c.cv_candidat LIKE :recherche')
+           ->setParameter('recherche', '%' . $recherche . '%')
+        //    ->orderBy('c.id', 'ASC')
+        //    ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Cv
 //    {

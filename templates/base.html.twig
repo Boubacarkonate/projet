@@ -46,10 +46,21 @@
                             </li>
                             <li>
                                 <div class="barre">
-                                    <form method="get" action="">
+                                    <form action="{{ path('app_search') }}" method="GET" >
                                         <input type="search" name="search" id="search" placeholder="mot..." size=""><button><i
                                                 class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
                                     </form>
+                                    {% if search %}
+    <h2>Résultats</h2>
+    <ul>
+        {% for search in search %}
+            <li>{{ resultats }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucun résultat trouvé.</p>
+{% endif %}
+
                                 </div>
                                 <div class="barreMenu">
                                     <form method="get" action="">
