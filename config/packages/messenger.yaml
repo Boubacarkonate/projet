@@ -13,10 +13,17 @@ framework:
                     max_retries: 3
                     multiplier: 2
             failed: 'doctrine://default?queue_name=failed'
+<<<<<<< HEAD
             # sync: 'sync://'                                               # 1) sije décommente cette ligne
 
         routing:
             Symfony\Component\Mailer\Messenger\SendEmailMessage: async          # 2) au lieu de async, je mets sync alors le mail envoyé  ne sera pas stocké en base de données en attente de transport
+=======
+            # sync: 'sync://'                                                # 1) sije décommente cette ligne
+
+        routing:
+            Symfony\Component\Mailer\Messenger\SendEmailMessage: async        # 2) et au lieu de async, je mets sync alors le mail envoyé  ne sera pas stocké en base de données en attente de transport
+>>>>>>> fe1d9de (config commenté envoie de mail)
             Symfony\Component\Notifier\Message\ChatMessage: async
             Symfony\Component\Notifier\Message\SmsMessage: async
 
